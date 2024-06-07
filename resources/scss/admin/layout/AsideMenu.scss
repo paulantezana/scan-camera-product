@@ -1,0 +1,151 @@
+@use "node_modules/sedna/src/sedna" as sedna;
+@use '../../base/variables.scss' as var;
+
+$menuBorderColor: var(--border-color);
+$asideFooterHeight: 32px;
+
+// General styles
+.AsideMenu {
+  @extend %SnList;
+  height: calc(100vh - #{var.$headerHeight + $asideFooterHeight});
+  overflow-y: auto;
+
+  &-container {
+    background: var(--gray-11);
+    // border-right: 1px solid var(--border-color);
+  }
+
+  li {
+    position: relative;
+
+    &.is-active {
+      color: var(--color1-6);
+
+      a {
+        color: var(--color1-6);
+      }
+    }
+  }
+
+  ul {
+    @extend %SnList;
+  }
+
+  a {
+    color: var(--gray-7);
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    padding: 12px 30px 12px 18px;
+
+    position: relative;
+
+    .AsideMenu-icon {
+      margin-right: 16px;
+      width: 16px;
+      text-align: center;
+    }
+
+    .toggle {
+      position: absolute;
+      z-index: 10;
+      right: 0;
+      padding: 0 15px 0 8px;
+
+      height: 100%;
+      display: flex;
+      align-items: center;
+      top: 0;
+    }
+
+    &:hover {
+      background: var(--gray-12);
+    }
+  }
+
+  ul {
+    a {
+      padding: 7px 10px 7px 46px;
+
+      .SnTag {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: .7rem;
+      }
+    }
+  }
+}
+
+// Menu Aside wrrapper
+.AsideMenu-is-show {
+  .AsideMenu {
+    &-wrapper {
+      background: rgba(black, 0.5);
+    }
+
+    &-container {
+      width: var.$asideWidth;
+    }
+  }
+}
+
+// Divider
+.AsideMenu {
+  &-divider {
+    margin: .55rem 0 .2rem;
+    font-size: .7rem;
+    padding-left: 18px;
+    text-transform: uppercase;
+  }
+}
+
+//@mixin AsideMenuInLarge(){
+.AsideMenu {
+  ul {
+    display: none;
+
+    &.is-show {
+      display: block;
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Aside Header
+.AsideHeader {
+  height: var.$headerHeight;
+  padding: 10px 20px;
+}
+
+// ----------------------------------------------------------------------------
+.AsideFooter {
+  height: $asideFooterHeight;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+}
+
+// Branding
+.Branding {
+  height: 100%;
+
+  &-link {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+    text-decoration: none;
+    position: relative;
+
+    img {
+      max-width: 32px;
+      margin-right: 16px;
+    }
+  }
+
+  &-name {
+    font-weight: 500;
+    color: var(--gray-7);
+  }
+}

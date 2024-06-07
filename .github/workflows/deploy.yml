@@ -1,0 +1,26 @@
+name: 🚀 Deploy app deploy API - PERU on push
+
+on:
+  push:
+    branches: ["deploy"]
+  pull_request:
+    branches: ["deploy"]
+
+permissions:
+  contents: read
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+
+    - name: 📂 Sync files APP
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: ftp.buscaruc.com
+        username: githubruc@buscaruc.com
+        password: ${{ secrets.FTP_BUSCARUC_PASSS }}
+        server-dir: ./public_html/scan-camera/

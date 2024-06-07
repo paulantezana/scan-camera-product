@@ -1,0 +1,28 @@
+body {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.5384616;
+  background: var(--panel-background);
+}
+
+img,
+video {
+  display: block;
+}
+
+.disabled {
+  color: var(--text-color-alt);
+  touch-action: none;
+  pointer-events: none;
+}
+
+.deleted,
+.canceled {
+  text-decoration: line-through;
+  color: var(--red-6);
+}
+
+a {
+  text-decoration: none;
+  color: var(--color1-6);
+}

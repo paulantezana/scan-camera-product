@@ -1,0 +1,51 @@
+@use "node_modules/sedna/src/sedna" as sedna;
+
+// Config Sedna
+@include sedna.core();
+@import "./base/postConfig.scss";
+
+// Themes
+// @include sedna.SnThemeLight();
+// @include sedna.SnThemeDarck();
+
+// Base
+@import "./base/base.scss";
+
+// Components
+@include sedna.SnBtn();
+@include sedna.SnAlert();
+@include sedna.SnCard();
+@include sedna.SnForm();
+@include sedna.SnControl();
+@include sedna.SnAvatar();
+@include sedna.SnGrid();
+@include sedna.SnLoading();
+@include sedna.SnMargin();
+@include sedna.SnModal();
+@include sedna.SnMessage();
+@include sedna.SnPagination();
+@include sedna.SnTable();
+@include sedna.SnFilter();
+@include sedna.SnSwitch();
+@include sedna.SnDropdown();
+@include sedna.SnTab();
+@include sedna.SnTag();
+@include sedna.SnCollapse();
+@include sedna.SnDivider();
+@include sedna.SnFreeze();
+@include sedna.SnEmpty();
+@include sedna.SnPadding();
+
+@include sedna.SnList();
+@include sedna.SnHidden();
+@include sedna.SnVideo();
+
+@include sedna.SnControlGroup();
+
+@import "admin/layout/Layout.scss";
+@import "admin/layout/AsideMenu.scss";
+@import "admin/layout/Header.scss";
+@import "admin/layout/HeaderMenu.scss";
+@import "admin/layout/UserMenu.scss";
+
+@import "./base/customSedna.scss";

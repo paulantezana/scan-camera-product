@@ -1,0 +1,259 @@
+@use "node_modules/sedna/src/sedna" as sedna;
+$classPrefix : 'Sn';
+
+// .SnMb-6 {
+//   margin-bottom: 1.75rem;
+// }
+
+// .SnMb-7 {
+//   margin-bottom: 2rem;
+// }
+
+// .SnMb-10 {
+//   margin-bottom: 2.5rem;
+// }
+
+// .SnCard {
+//   // box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14);
+//   box-shadow: 0 0.3px 0.3px #0000001a, 0 1px 2px #0003;
+//   border: 0;
+//   border-radius: 4px;
+
+//   &-section {
+//     border-radius: 4px;
+//     border: 1px solid var(--border-color);
+//     padding: 0.5rem;
+//   }
+// }
+
+// .SnModal {
+//   border-radius: 8px;
+
+//   @include sedna.to(l) {
+//     margin: 60px auto 50px;
+//   }
+
+//   &-body {
+//     padding-top: 0;
+//   }
+
+//   &-header {
+//     font-size: 1rem;
+//     box-shadow: none;
+//   }
+// }
+
+// .SnTable {
+//   &-menu {
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+
+//     span {
+//       padding: 4px 0 4px 4px;
+//     }
+
+//     .SnBtn {
+//       border-color: transparent;
+
+//       &:hover {
+//         border-color: transparent;
+//       }
+//     }
+//   }
+// }
+
+// .SnForm-item.inner {
+
+//   .ss-multi-selected,
+//   .ss-single-selected {
+//     height: calc(32px + 18px);
+//     padding-top: 18px;
+//   }
+
+//   .sm {
+
+//     .ss-multi-selected,
+//     .ss-single-selected {
+//       padding-top: 14px;
+//       padding-bottom: 0;
+//       height: 40px;
+//     }
+//   }
+
+//   &.has-success {
+
+//     .ss-multi-selected,
+//     .ss-single-selected {
+//       border-color: var(--green-5);
+
+//       &:focus {
+//         box-shadow: var(--green-5) 0px 0px 0px 1px;
+//       }
+//     }
+//   }
+
+//   &.has-danger {
+
+//     .ss-multi-selected,
+//     .ss-single-selected {
+//       border-color: var(--red-5);
+
+//       &:focus {
+//         box-shadow: var(--red-5) 0px 0px 0px 1px;
+//       }
+//     }
+//   }
+// }
+
+// // Button
+// .SnBtn.icon {
+//   &.iconCenter {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
+// }
+
+// // Imput
+// .SnControlGroup-prepend-text {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   padding: 0 0.5rem;
+//   background: var(--border-color);
+//   border-radius: 4px 0 0 4px;
+// }
+
+// .SnList {
+//   &.describeCenter {
+//     li {
+//       display: flex;
+//       justify-content: center;
+
+//       :first-child {
+//         width: 50%;
+//         text-align: right;
+//       }
+
+//       :last-child {
+//         width: 50%;
+//         text-align: left;
+//         font-weight: bold;
+//         padding-left: 0.5rem;
+//       }
+//     }
+//   }
+// }
+
+// .SnPortal {
+//   position: absolute;
+//   min-width: 150px;
+//   z-index: 10;
+// }
+
+// .datepicker.datepicker-dropdown.active {
+//   z-index: 9999;
+// }
+
+
+// // ========================================================================
+// // T E M P O R A L
+
+
+
+
+
+// // ----------------------------------------------------------
+// // C U S T O M     S T Y L E S
+// .SnTheme-light {
+//   .SnForm-control {
+//     &:hover {
+//       border-color: var(--control-border-hover);
+//     }
+
+//     &:active,
+//     &:focus {
+//       border-color: var(--gray-12);
+//     }
+
+//     &:focus {
+//       box-shadow: var(--gray-12) 0px 0px 0px 1px;
+//     }
+//   }
+// }
+
+// .SnTheme-darck {
+//   .SnForm-control {
+//     &:hover {
+//       border-color: var(--control-border-hover);
+//     }
+
+//     &:active,
+//     &:focus {
+//       border-color: var(--control-border-hover);
+//     }
+
+//     &:focus {
+//       box-shadow: var(--control-border-hover) 0px 0px 0px 1px;
+//     }
+//   }
+// }
+
+// .SnControl-prefix,
+// .SnControl-suffix {
+//   color: var(--text-color);
+// }
+
+// .SnModal-body.confirm {
+//   text-align: center;
+// }
+
+// .SnModal {
+//   &-confirmIcon {
+//     float: none;
+//     margin-right: 0;
+//     font-size: 48px;
+//   }
+
+//   &-confirmContent {
+//     margin-left: 0;
+//   }
+
+//   &-confirmBtns {
+//     justify-content: center;
+//   }
+// }
+
+// .SnBtn {
+//   --btn-hover-border-color: var(--control-border);
+//   --btn-hover-color: var(--text-color);
+
+//   --btn-focus-border-color: var(--control-border-hover);
+//   --btn-focus-color: var(--text-color);
+// }
+
+// .SnMessage-close {
+//   opacity: 1 !important;
+// }
+
+// @include sedna.from(l){
+//   ::-webkit-scrollbar-track {
+//     background-color: var(--panel-background);
+//   }
+
+//   ::-webkit-scrollbar {
+//     width: 10px;
+//     height: 10px;
+//   }
+
+//   ::-webkit-scrollbar-thumb {
+//     border-radius: 8px;
+//     background: var(--text-color-alt);
+
+//     &:hover {
+//       background: var(--text-color);
+//     }
+//   }
+// }
+

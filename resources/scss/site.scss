@@ -1,0 +1,37 @@
+@use "node_modules/sedna/src/sedna" as sedna;
+
+// Config Sedna
+@include sedna.core();
+@import "./base/postConfig.scss";
+
+// Themes
+// @include sedna.SnThemeLight();
+// @include sedna.SnThemeDarck();
+
+// Base
+@import "./base/base.scss";
+
+// Components
+@include sedna.SnBtn();
+@include sedna.SnAlert();
+@include sedna.SnCard();
+@include sedna.SnForm();
+@include sedna.SnControl();
+@include sedna.SnMargin();
+@include sedna.SnSwitch();
+@include sedna.SnMenu(l, ".SiteMenu");
+@include sedna.SnModal();
+@include sedna.SnMessage();
+@include sedna.SnAvatar();
+@include sedna.SnTab();
+@include sedna.SnTable();
+@include sedna.SnGrid();
+@include sedna.SnDivider();
+@include sedna.SnControlGroup(".ss-main .ss-single-selected");
+@include sedna.SnDropdown();
+
+@include sedna.SnHidden();
+
+@import "site/Login";
+
+@import "./base/customSedna.scss";

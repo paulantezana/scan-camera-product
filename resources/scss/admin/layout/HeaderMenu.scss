@@ -1,0 +1,35 @@
+.Header {
+  &-left {
+    display: flex;
+  }
+
+  &-title {
+    padding: 0 .5rem;
+    overflow: hidden;
+    line-height: 1em;
+    display: flex;
+    align-items: center;
+  }
+
+  &-gptIcon {
+    padding: 6px;
+    background: rgb(25, 195, 125);
+    border-radius: 100%;
+  }
+}
+
+.Header-right {
+  .UserMenu {
+
+    // a {
+    //     // color: var(--color1-i);
+    // }
+    ul {
+      color: var(--snColorText);
+
+      a {
+        color: var(--snColorText);
+      }
+    }
+  }
+}

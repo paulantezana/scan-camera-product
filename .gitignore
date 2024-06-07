@@ -1,0 +1,12 @@
+.idea
+.vscode
+.env
+*.log
+/vendor/
+/node_modules/
+*.phpunit.result*
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

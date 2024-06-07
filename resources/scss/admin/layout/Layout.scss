@@ -1,0 +1,74 @@
+@use "node_modules/sedna/src/sedna" as sedna;
+@use '../../base/variables.scss' as var;
+
+// Layout Styles
+.AdminLayout {
+  position: relative;
+
+  &-header {
+    line-height: var.$headerHeight;
+    height: var.$headerHeight;
+  }
+
+  &-body {
+    display: flex;
+
+    &-main {
+      flex: 1 1 auto;
+      height: calc(100vh - #{var.$headerHeight + 1});
+      overflow: auto;
+    }
+
+    &-panelRight {
+      display: none;
+      flex: 0 0 0px;
+    }
+  }
+
+  &-asideLeft {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    z-index: 110;
+    width: 100%;
+
+    display: none;
+  }
+
+  &.AsideMenu-is-show {
+    .AdminLayout {
+      &-asideLeft {
+        left: 0;
+        display: block;
+      }
+    }
+  }
+
+  &.PanelRight-is-show {
+    .AdminLayout-body-panelRight {
+      display: block;
+      flex: 0 0 300px;
+    }
+  }
+}
+
+// Styles
+.AdminLayout {
+  &-header {
+    background: var(--gray-12);
+    color: var(--gray-7);
+    // background: var(--color1-6);
+    // color: var(--color1-i);
+  }
+  &-asideLeft{
+    color: var(--gray-7);
+  }
+}
+
+.SnContent {
+  padding: 1rem .5rem;
+
+  @include sedna.from(l) {
+    padding: 1rem;
+  }
+}

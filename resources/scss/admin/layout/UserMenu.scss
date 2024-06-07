@@ -1,0 +1,44 @@
+.UserMenu {
+  // --border-color: var(--gray-10);
+
+  display: flex;
+  align-items: center;
+  line-height: 1rem;
+
+  color: var(--text-color);
+
+  a {
+    color: var(--text-color);
+  }
+
+  .SnBtn {
+    border-color: transparent !important;
+    color: var(--color1-i);
+
+    &:hover,
+    &:active,
+    &:focus {
+      border-color: transparent !important;
+    }
+  }
+
+  .SnList {
+    &-item {
+      padding: 8px 12px !important;
+    }
+
+    &.profile {
+      .SnList-item {
+        a {
+          display: flex;
+          align-items: center;
+          line-height: 1rem;
+        }
+      }
+    }
+  }
+
+  .SnAvatar {
+    cursor: pointer;
+  }
+}

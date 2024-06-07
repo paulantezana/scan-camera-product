@@ -21,6 +21,6 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: ftp.buscaruc.com
-        username: githubruc@buscaruc.com
-        password: ${{ secrets.FTP_BUSCARUC_PASSS }}
+        username: camenraGitHub@buscaruc.com
+        password: ${{ secrets.FTP_BUSCA_SCAN }}
         server-dir: ./public_html/scan-camera/

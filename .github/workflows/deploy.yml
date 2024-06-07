@@ -1,4 +1,4 @@
-name: 🚀 Deploy app deploy API - PERU on push
+name: 🚀 Deploy RUN
 
 on:
   push:

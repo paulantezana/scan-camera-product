@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Core\BaseController;
+use App\Entity\Database\Database;
 use App\Entity\Models\AppProduct;
 use App\Exceptions\ValidationException;
 use App\Http\Models\Result;
 use App\Http\Request;
 use App\Http\Response;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class AppProductController extends BaseController
 {
@@ -103,6 +105,76 @@ class AppProductController extends BaseController
     return $response->json($res);
   }
 
+  public function import(Request $request, Response $response)
+  {
+    $res = new Result();
+
+    $fileTmp = $_FILES['excelFile']['tmp_name'];
+    $spreadsheet = IOFactory::load($fileTmp);
+    $sheet = $spreadsheet->getSheet(0);
+
+    // Obtiene el rango de celdas utilizadas en la hoja
+    $highestRow = $sheet->getHighestRow();
+    $highestColumn = $sheet->getHighestColumn();
+
+    // Convierte el rango de celdas a un array
+    $excelData = $sheet->rangeToArray('A2:' . $highestColumn . $highestRow, null, true, false);
+
+    // VALIDATE
+    if (count($excelData ?? []) === 0) {
+      throw new ValidationException('El archivo excel no contiene información');
+    }
+
+    $counterInsert = 0;
+    $counterHasInsert = 0;
+
+    $conection = Database::getInstance()->getConnection();
+    $conection->beginTransaction();
+
+    try {
+
+      $appProductModel = new AppProduct();
+      foreach ($excelData as $i => $row) {
+        $rowIndex = $i + 1;
+        if (count($row) != 2) {
+          throw new ValidationException('Fila ' . $rowIndex . ': No contiene la cantidad de filas esperada');
+        }
+
+        // - Header
+        $code = $row[0] ?? '';
+        $description = $row[1] ?? '';
+
+        // ====================================================
+        // Validate Header Document
+        if (empty($code)) throw new ValidationException("Fila {$rowIndex}: Falta el código");
+        if (empty($description)) throw new ValidationException("Fila {$rowIndex}: Falta la descripcion");
+
+        // ====================================================
+        // Insert Data
+        $productMatch = $appProductModel->getBy('code', $code);
+        if ($productMatch === false) {
+          $appProductModel->insert([
+            'code' => $code,
+            'description' => $description,
+          ]);
+          $counterInsert++;
+        } else {
+          $counterHasInsert++;
+        }
+      }
+
+      $conection->commit();
+    } catch (\Exception $e) {
+      $conection->rollBack();
+      throw $e;
+    }
+
+    $res->success = true;
+    $res->message = "Se insertarón {$counterInsert} nuevos productos. \nSe encontraron {$counterHasInsert} ya registrados ";
+
+    return $response->json($res);
+  }
+
   public function validate(Request $request, Response $response)
   {
     return $response->view('admin/validate', [
@@ -134,7 +206,7 @@ class AppProductController extends BaseController
 
     $currentDateTime = date('Y-m-d H:i:s');
     $appProductModel->updateById($product['id'], [
-      'verified' => '',
+      'verified' => '1',
       'verified_date' => $currentDateTime,
     ]);
 

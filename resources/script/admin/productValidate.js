@@ -1,4 +1,6 @@
 let html5QrCode;
+let lastResult = '';
+
 document.addEventListener("DOMContentLoaded", () => {
   html5QrCode = new Html5Qrcode("qrReader");
 });
@@ -35,9 +37,9 @@ function stopCamera() {
   }
 
   SnModal.close('cameraModal');
+  lastResult = '';
 }
 
-let lastResult = '';
 function onScanSuccess(decodedText, decodedResult) {
   // Validate is not some result
   if (decodedText == lastResult) {

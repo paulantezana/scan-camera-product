@@ -61,4 +61,4 @@
 
 <script src="<?= URL_PATH ?>/libraries/js/html5-qrcode.min.js"></script>
 
-<script src="<?= URL_PATH ?>/build/script/admin/productValidate.js"></script>
+<script src="<?= URL_PATH ?>/build/script/admin/productValidate.js?v=<?= APP_VERSION ?>"></script>

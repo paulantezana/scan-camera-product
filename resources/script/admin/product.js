@@ -1,6 +1,9 @@
 let maintenanceTable;
+let pProductImportValidator;
 
 document.addEventListener("DOMContentLoaded", () => {
+  pProductImportValidator = dynamicLoadFormValidate(pProductImportValidator, 'productImportModalForm');
+
   maintenanceTable = new SnTable({
     elementId: 'drawProductTable',
     entity: 'product',
@@ -56,6 +59,14 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     ],
   });
+
+  // ---------------------------------------------------------------------------------
+  // File submit
+  const productImportModalForm = document.getElementById('productImportModalForm');
+  productImportModalForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    productImportSubmit(productImportModalForm);
+  })
 });
 
 function maintenanceTableReload() {
@@ -64,4 +75,62 @@ function maintenanceTableReload() {
 
 function maintenanceTableNew(screen, controller) {
   window.location.href = URL_PATH + '/admin/' + controller + '/form';
+}
+
+function maintenanceTableImport(screen, controller){
+  SnModal.open('productImportModal');
+}
+
+
+// ---------------------------------------------------------------------------------
+// Import
+function productImportSubmit(elementForm) {
+  if (!pProductImportValidator.validate()) {
+    dynamicFormSubmitInvalidMessage('No se especificó ningún archivo');
+    return;
+  }
+
+  let element = document.getElementById('productImportFile');
+  if (element == null) {
+    return;
+  }
+
+  if (element.files === undefined) {
+    SnModal.danger({ title: "ALERTA USUARIO", content: 'Por favor, selecciona al menos un archivo para continuar.' });
+    return;
+  }
+
+  let excelFile = element.files[0];
+
+  if (excelFile == undefined || excelFile == null) {
+    SnModal.danger({ title: "ALERTA USUARIO", content: 'Por favor, selecciona al menos un archivo para continuar.' });
+    return;
+  }
+
+
+  if (!(validateFile(excelFile, ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'], 3000))) {
+    return;
+  }
+
+  let data = new FormData();
+  data.append('excelFile', excelFile);
+
+  SnLoadingState(true, 'jsAction', 'productImportModalFormSubmit');
+  RequestApi.fetch("/admin/product/import", {
+    method: "POST",
+    body: data,
+  })
+    .then((res) => {
+      if (res.success) {
+        SnModal.success({ title: "PROCESO COMPLETO", content: res.message });
+        SnModal.close('productImportModal');
+        maintenanceTable.getData();
+      } else {
+        dynamicResponseErrorModalMessage(res);
+      }
+      elementForm.reset();
+    })
+    .finally((e) => {
+      SnLoadingState(false, 'jsAction', 'productImportModalFormSubmit');
+    });
 }

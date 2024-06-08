@@ -11,8 +11,6 @@ class AdminAuthMiddleware
 {
   public function handle(Request $request, Response $response, Closure $next)
   {
-    $user = $_SESSION[SESS_USER];
-
     if (!isset($_SESSION[SESS_USER]['id'])) {
       if ($request->expectsJson()) {
         throw new ForbiddenException('La sesion a expirado o no tienes permisos para acceder a estos recursos');

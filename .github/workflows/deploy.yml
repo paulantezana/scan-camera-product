@@ -1,26 +1,26 @@
-name: 🚀 Deploy RUN
+# name: 🚀 Deploy RUN
 
-on:
-  push:
-    branches: ["deploy"]
-  pull_request:
-    branches: ["deploy"]
+# on:
+#   push:
+#     branches: ["deploy"]
+#   pull_request:
+#     branches: ["deploy"]
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
 
-jobs:
-  web-deploy:
-    name: 🎉 Deploy
-    runs-on: ubuntu-latest
-    steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v2
+# jobs:
+#   web-deploy:
+#     name: 🎉 Deploy
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: 🚚 Get latest code
+#       uses: actions/checkout@v2
 
-    - name: 📂 Sync files APP
-      uses: SamKirkland/FTP-Deploy-Action@4.3.0
-      with:
-        server: ftp.buscaruc.com
-        username: camenraGitHub@buscaruc.com
-        password: ${{ secrets.FTP_BUSCA_SCAN }}
-        server-dir: ./public_html/scan-camera/
+#     - name: 📂 Sync files APP
+#       uses: SamKirkland/FTP-Deploy-Action@4.3.0
+#       with:
+#         server: ftp.buscaruc.com
+#         username: camenraGitHub@buscaruc.com
+#         password: ${{ secrets.FTP_BUSCA_SCAN }}
+#         server-dir: ./public_html/scan-camera/

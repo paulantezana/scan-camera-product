@@ -20,4 +20,4 @@ define('ROOT_DIR', $_SERVER["DOCUMENT_ROOT"] . rtrim($scriptName, '/') . '/..');
 define('PUBLIC_ROOT_DIR', $_SERVER["DOCUMENT_ROOT"] . rtrim($scriptName, '/'));
 
 define('SESS_USER', 'df120');
-define('APP_VERSION', '1.1.912');
+define('APP_VERSION', '1.1.1');

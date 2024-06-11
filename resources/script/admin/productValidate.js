@@ -47,11 +47,17 @@ function onScanSuccess(decodedText, decodedResult) {
   }
   lastResult = decodedText;
 
-  // Start validate barcode
-  // if (decodedText.length !== 5) {
-  //   SnMessage.warning({ content: 'Código de barra desconocido' });
-  //   return;
-  // }
+  if (isNaN(decodedText)) {
+    SnMessage.warning({ content: 'El código "' + decodedText + '" es un formato inválido.' });
+    return;
+}
+
+// Validar código de barras
+if (!(decodedText.length >= 10 && decodedText.length <= 20)) {
+    SnMessage.warning({ content: 'El código "' + decodedText + '" es un formato inválido.' });
+    return;
+}
+
 
   validateByCodeId(decodedText);
 }

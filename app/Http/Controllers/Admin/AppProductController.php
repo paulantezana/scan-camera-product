@@ -197,7 +197,7 @@ class AppProductController extends BaseController
     $product = $appProductModel->getBy('code', $body['code']);
 
     if ($product === false) {
-      throw new ValidationException('Código de producto no encontrado. Intente nuevamente.');
+      throw new ValidationException('El código de producto "' . $body['code'] . '" no fue encontrado. Por favor, inténtelo de nuevo.');
     }
 
     if ($product['verified'] == 1) {
